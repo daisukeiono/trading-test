@@ -7,13 +7,11 @@ import yfinance as yf
 
 
 # 銘柄コードと会社名
-stocks = {
-    "5803.T": "フジクラ",
-    "6526.T": "ソシオネクスト",
-    "6227.T": "AIメカテック",
-    "4413.T": "ボードルア",
-    "5253.T": "カバー",
-}
+with open(
+    "stocks.json",
+    encoding="utf-8"
+) as f:
+    stocks = json.load(f)
 
 rows = []
 
