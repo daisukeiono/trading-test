@@ -1,36 +1,41 @@
-import yfinance as yf
-import pandas as pd
+import json
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
-# ==========================
-# 監視銘柄
-# ==========================
-codes = [
-    "5803.T",   # フジクラ
-    "6526.T",   # ソシオネクスト
-    "6227.T",   # AIメカテック
-    "4413.T",   # ボードルア
-    "5253.T",   # カバー
-]
+import pandas as pd
+import yfinance as yf
+
+
+# 銘柄コードと会社名
+stocks = {
+    "5803.T": "フジクラ",
+    "6526.T": "ソシオネクスト",
+    "6227.T": "AIメカテック",
+    "4413.T": "ボードルア",
+    "5253.T": "カバー",
+}
 
 rows = []
 
-for code in codes:
-
+for code, name in stocks.items():
     try:
         df = yf.download(
             code,
             period="1y",
             auto_adjust=True,
-            progress=False
+            progress=False,
         )
 
+        # yfinanceのMultiIndex対策
         if isinstance(df.columns, pd.MultiIndex):
             df.columns = df.columns.get_level_values(0)
 
-        if len(df) < 75:
+        # データ不足対策
+        if df.empty or len(df) < 75:
+            print(f"{code}: データ不足")
             continue
 
-        # テクニカル指標
+        # 指標
         df["MA25"] = df["Close"].rolling(25).mean()
         df["MA75"] = df["Close"].rolling(75).mean()
         df["VOL20"] = df["Volume"].rolling(20).mean()
@@ -44,55 +49,65 @@ for code in codes:
         vol_ratio = float(last["Volume"] / last["VOL20"])
         near_high = float(last["Close"] / last["HIGH60"])
 
-        # スコア計算
-        score = 0
-        score += close > ma25
-        score += ma25 > ma75
-        score += vol_ratio > 1.0
-        score += near_high > 0.90
+        above_ma25 = close > ma25
+        ma25_above_ma75 = ma25 > ma75
+        volume_ok = vol_ratio > 1.0
+        near_high_ok = near_high > 0.90
+
+        score = sum([
+            above_ma25,
+            ma25_above_ma75,
+            volume_ok,
+            near_high_ok,
+        ])
 
         rows.append({
             "code": code,
+            "name": name,
             "close": round(close, 1),
             "ma25": round(ma25, 1),
             "ma75": round(ma75, 1),
-            "distance_ma25(%)": round((close / ma25 - 1) * 100, 1),
-            "distance_ma75(%)": round((close / ma75 - 1) * 100, 1),
+            "distance_ma25": round((close / ma25 - 1) * 100, 1),
+            "distance_ma75": round((close / ma75 - 1) * 100, 1),
             "vol_ratio": round(vol_ratio, 2),
             "near_60d_high": round(near_high, 3),
             "score": int(score),
-            "above_ma25": close > ma25,
-            "ma25_above_ma75": ma25 > ma75,
-            "volume_ok": vol_ratio > 1.0,
-            "near_high_ok": near_high > 0.90,
+            "above_ma25": bool(above_ma25),
+            "ma25_above_ma75": bool(ma25_above_ma75),
+            "volume_ok": bool(volume_ok),
+            "near_high_ok": bool(near_high_ok),
         })
 
-    except Exception as e:
-        print(code, e)
+    except Exception as error:
+        print(f"{code}: {error}")
 
-# ==========================
-# DataFrame
-# ==========================
-result = pd.DataFrame(rows)
 
-result = result.sort_values(
-    by=["score", "near_60d_high", "vol_ratio"],
-    ascending=False
+# 点数、高値接近率、出来高比の順に並べる
+rows.sort(
+    key=lambda item: (
+        item["score"],
+        item["near_60d_high"],
+        item["vol_ratio"],
+    ),
+    reverse=True,
 )
 
-print(result)
+updated_at = datetime.now(
+    ZoneInfo("Asia/Tokyo")
+).isoformat(timespec="seconds")
 
-print("\n===== score >= 3 =====")
-print(result[result["score"] >= 3])
+payload = {
+    "updated_at": updated_at,
+    "stocks": rows,
+}
 
-# ==========================
-# JSON保存（アプリ用）
-# ==========================
-result.to_json(
-    "results.json",
-    orient="records",
-    force_ascii=False,
-    indent=2
-)
+with open("results.json", "w", encoding="utf-8") as file:
+    json.dump(
+        payload,
+        file,
+        ensure_ascii=False,
+        indent=2,
+    )
 
+print(json.dumps(payload, ensure_ascii=False, indent=2))
 print("\nresults.json saved.")
