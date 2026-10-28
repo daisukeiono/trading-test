@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-27T22:27:50+09:00",
+  "updated_at": "2026-10-28T23:14:45+09:00",
   "stocks": [
     {
       "code": "4413.T",
       "name": "ボードルア",
       "close": 2936.0,
-      "ma25": 2964.8,
-      "ma75": 2961.7,
-      "distance_ma25": -1.0,
+      "ma25": 2963.6,
+      "ma75": 2961.3,
+      "distance_ma25": -0.9,
       "distance_ma75": -0.9,
-      "vol_ratio": 3.63,
+      "vol_ratio": 1.49,
       "near_60d_high": 0.941,
       "score": 3,
       "above_ma25": false,
@@ -17,12 +17,6 @@
       "volume_ok": true,
       "near_high_ok": true,
       "history": [
-        {
-          "date": "2026-06-16",
-          "close": 2402.0,
-          "ma25": 2355.9,
-          "ma75": 2109.7
-        },
         {
           "date": "2026-06-17",
           "close": 2460.0,
@@ -556,31 +550,31 @@
           "close": 2936.0,
           "ma25": 2964.8,
           "ma75": 2961.7
+        },
+        {
+          "date": "2026-10-28",
+          "close": 2936.0,
+          "ma25": 2963.6,
+          "ma75": 2961.3
         }
       ]
     },
     {
       "code": "7974.T",
       "name": "任天堂",
-      "close": 8453.0,
-      "ma25": 8217.1,
-      "ma75": 8098.2,
-      "distance_ma25": 2.9,
-      "distance_ma75": 4.4,
-      "vol_ratio": 0.89,
-      "near_60d_high": 0.929,
+      "close": 8311.0,
+      "ma25": 8210.5,
+      "ma75": 8113.7,
+      "distance_ma25": 1.2,
+      "distance_ma75": 2.4,
+      "vol_ratio": 0.95,
+      "near_60d_high": 0.913,
       "score": 3,
       "above_ma25": true,
       "ma25_above_ma75": true,
       "volume_ok": false,
       "near_high_ok": true,
       "history": [
-        {
-          "date": "2026-06-16",
-          "close": 7218.0,
-          "ma25": 7253.3,
-          "ma75": 8147.2
-        },
         {
           "date": "2026-06-17",
           "close": 7275.0,
@@ -1114,31 +1108,31 @@
           "close": 8453.0,
           "ma25": 8217.1,
           "ma75": 8098.2
+        },
+        {
+          "date": "2026-10-28",
+          "close": 8311.0,
+          "ma25": 8210.5,
+          "ma75": 8113.7
         }
       ]
     },
     {
       "code": "6526.T",
       "name": "ソシオネクスト",
-      "close": 1894.5,
-      "ma25": 2023.8,
-      "ma75": 2079.9,
-      "distance_ma25": -6.4,
-      "distance_ma75": -8.9,
-      "vol_ratio": 1.49,
-      "near_60d_high": 0.833,
+      "close": 1971.5,
+      "ma25": 2025.0,
+      "ma75": 2071.3,
+      "distance_ma25": -2.6,
+      "distance_ma75": -4.8,
+      "vol_ratio": 1.53,
+      "near_60d_high": 0.867,
       "score": 1,
       "above_ma25": false,
       "ma25_above_ma75": false,
       "volume_ok": true,
       "near_high_ok": false,
       "history": [
-        {
-          "date": "2026-06-16",
-          "close": 2371.8,
-          "ma25": 2529.6,
-          "ma75": 2090.0
-        },
         {
           "date": "2026-06-17",
           "close": 2450.9,
@@ -1672,31 +1666,31 @@
           "close": 1894.5,
           "ma25": 2023.8,
           "ma75": 2079.9
+        },
+        {
+          "date": "2026-10-28",
+          "close": 1971.5,
+          "ma25": 2025.0,
+          "ma75": 2071.3
         }
       ]
     },
     {
       "code": "6227.T",
       "name": "AIメカテック",
-      "close": 5770.0,
-      "ma25": 7115.2,
-      "ma75": 6660.7,
-      "distance_ma25": -18.9,
-      "distance_ma75": -13.4,
-      "vol_ratio": 0.78,
-      "near_60d_high": 0.625,
+      "close": 6060.0,
+      "ma25": 7129.2,
+      "ma75": 6662.0,
+      "distance_ma25": -15.0,
+      "distance_ma75": -9.0,
+      "vol_ratio": 0.88,
+      "near_60d_high": 0.657,
       "score": 1,
       "above_ma25": false,
       "ma25_above_ma75": true,
       "volume_ok": false,
       "near_high_ok": false,
       "history": [
-        {
-          "date": "2026-06-16",
-          "close": 8073.1,
-          "ma25": 6649.1,
-          "ma75": 6638.6
-        },
         {
           "date": "2026-06-17",
           "close": 8153.0,
@@ -2230,31 +2224,31 @@
           "close": 5770.0,
           "ma25": 7115.2,
           "ma75": 6660.7
+        },
+        {
+          "date": "2026-10-28",
+          "close": 6060.0,
+          "ma25": 7129.2,
+          "ma75": 6662.0
         }
       ]
     },
     {
       "code": "5253.T",
       "name": "カバー",
-      "close": 1522.0,
-      "ma25": 1565.1,
-      "ma75": 1589.4,
-      "distance_ma25": -2.8,
-      "distance_ma75": -4.2,
-      "vol_ratio": 0.69,
-      "near_60d_high": 0.88,
+      "close": 1557.0,
+      "ma25": 1561.3,
+      "ma75": 1588.5,
+      "distance_ma25": -0.3,
+      "distance_ma75": -2.0,
+      "vol_ratio": 0.63,
+      "near_60d_high": 0.9,
       "score": 0,
       "above_ma25": false,
       "ma25_above_ma75": false,
       "volume_ok": false,
       "near_high_ok": false,
       "history": [
-        {
-          "date": "2026-06-16",
-          "close": 1415.0,
-          "ma25": 1580.6,
-          "ma75": 1516.7
-        },
         {
           "date": "2026-06-17",
           "close": 1449.0,
@@ -2788,6 +2782,12 @@
           "close": 1522.0,
           "ma25": 1565.1,
           "ma75": 1589.4
+        },
+        {
+          "date": "2026-10-28",
+          "close": 1557.0,
+          "ma25": 1561.3,
+          "ma75": 1588.5
         }
       ]
     }
